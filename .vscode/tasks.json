@@ -1,0 +1,117 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "nixos-machines",
+            "type": "pickString",
+            "description": "NixOS machines",
+            "options": [
+                "secure"
+            ],
+            "default": "secure"
+        },
+        {
+            "id": "format",
+            "type": "pickString",
+            "description": "What image format to generate",
+            "options": [
+                "amazon",
+                "azure",
+                "cloudstack",
+                "do",
+                "docker",
+                "gce",
+                "hyperv",
+                "install-iso-hyperv",
+                "install-iso",
+                "iso",
+                "kexec-bundle",
+                "kexec",
+                "kubevirt",
+                "linode",
+                "lxc-metadata",
+                "lxc",
+                "openstack",
+                "proxmox-lxc",
+                "proxmox",
+                "qcow-efi",
+                "qcow",
+                "raw-efi",
+                "raw",
+                "sd-aarch64-installer",
+                "sd-aarch64",
+                "vagrant-virtualbox",
+                "virtualbox",
+                "vm-bootloader",
+                "vm-nogui",
+                "vm",
+                "vmware"
+            ],
+            "default": "proxmox"
+        }
+    ],
+    "tasks": [
+        {
+            "label": "Build OS Image",
+            "type": "shell",
+            "command": "nix build .#nixosConfigurations.${input:nixos-machines}.config.formats.${input:format}",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus": true
+            },
+            "group": "build"
+        },
+        {
+            "label": "Update Nix Flake",
+            "type": "shell",
+            "command": "sudo nix flake update && nix flake update"
+        },
+        {
+            "label": "Update Nix Channels",
+            "type": "shell",
+            "command": "echo 'Updating root channels'; sudo nix-channel --update && echo 'Update user channels'; nix-channel --update"
+        },
+        {
+            "label": "Print Nix Versions",
+            "type": "shell",
+            "command": "for chan in nixos nixpkgs; do   printf \"%s: %s\n\" $chan $(nix-instantiate --eval --expr \"(import <$chan> {}).lib.version\" 2>/dev/null); done"
+        },
+        {
+            "label": "Update All",
+            "dependsOn": [
+                "Update Nix Channels",
+                "Update Nix Flake"
+            ],
+            "dependsOrder": "sequence",
+            "group": "build"
+        },
+        {
+            "label": "Remove VM",
+            "type": "shell",
+            "command": "if [[ -f nixos.qcow2 ]]; then rm nixos.qcow2; fi"
+        },
+        {
+            "label": "Build VM",
+            "type": "shell",
+            "command": "nix build .#nixosConfigurations.${input:nixos-machines}.config.formats.vm"
+        },
+        {
+            "label": "Run VM",
+            "type": "shell",
+            "command": "cp result result1 && chmod u+w result1 && sed -i 's/1024/3072/g' result1 && ./result1"
+        },
+        {
+            "label": "Build and Run VM",
+            "dependsOn": [
+                "Remove VM",
+                "Build VM",
+                "Run VM"
+            ],
+            "dependsOrder": "sequence",
+            "group": "build"
+        }
+    ]
+}
