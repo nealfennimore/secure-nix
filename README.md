@@ -14,6 +14,18 @@ This is an opinionated secure base config for your nixos system.
 - Encrypted [DNS over TLS](./modules/networking/dns.nix) via Cloudflare
 - Encrypted [Network Time Security (NTS)](./modules/networking/nts.nix) via Cloudflare and System76
 
+## System Requirements
+
+Suggested 3GB of memory when using ClamAV, otherwise disable like so:
+
+```nix
+  services.clamav = {
+    daemon.enable = false;
+    updater.enable = false;
+  };
+```
+
+
 ## Usage
 
 ### Flake Import
@@ -36,7 +48,7 @@ This is an opinionated secure base config for your nixos system.
     nixosConfigurations = {
       my_system = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules =secure-nix.modules ++ [
+        modules = secure-nix.modules ++ [
             ./configuration.nix
         ];
       };
