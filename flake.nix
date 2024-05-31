@@ -20,11 +20,9 @@
     nixosConfigurations = {
       secure = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {
-          isTest = true;
-        };
         modules = [
           nixos-generators.nixosModules.all-formats
+          ./config.nix
         ] ++ modules;
       };
     };
