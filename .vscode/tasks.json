@@ -91,17 +91,26 @@
         {
             "label": "Remove VM",
             "type": "shell",
-            "command": "if [[ -f nixos.qcow2 ]]; then rm nixos.qcow2; fi"
+            "command": "if [[ -f nixos.qcow2 ]]; then rm nixos.qcow2; fi",
+            "options": {
+              "cwd": "${workspaceFolder}/test"
+            }
         },
         {
             "label": "Build VM",
             "type": "shell",
-            "command": "nix build .#nixosConfigurations.${input:nixos-machines}.config.formats.vm"
+            "command": "nix build .#nixosConfigurations.${input:nixos-machines}.config.formats.vm",
+            "options": {
+              "cwd": "${workspaceFolder}/test"
+            }
         },
         {
             "label": "Run VM",
             "type": "shell",
-            "command": "cp result result1 && chmod u+w result1 && sed -i 's/1024/3072/g' result1 && ./result1"
+            "command": "cp result result1 && chmod u+w result1 && sed -i 's/1024/3072/g' result1 && ./result1",
+            "options": {
+              "cwd": "${workspaceFolder}/test"
+            }
         },
         {
             "label": "Build and Run VM",

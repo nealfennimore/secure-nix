@@ -5,7 +5,6 @@
     ./security
     ./services
     ./systemd
-    ./users
     ./boot.nix
   ];
 
