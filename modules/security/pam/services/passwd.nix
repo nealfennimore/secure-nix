@@ -8,9 +8,9 @@
       retry = lib.mkDefault 3;
       minlen = lib.mkDefault 8;
       difok = lib.mkDefault 6;
-      dcredit = lib.mkDefault - 1;
+      dcredit = lib.mkDefault (-1);
       ucredit = lib.mkDefault 1;
-      ocredit = lib.mkDefault - 1;
+      ocredit = lib.mkDefault (-1);
       lcredit = lib.mkDefault 1;
       enforce_for_root = lib.mkDefault true;
     };
