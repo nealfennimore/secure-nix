@@ -4,7 +4,7 @@
     ./fail2ban.nix
     ./logrotate.nix
     ./openssh.nix
-    ./systat.nix
+    ./sysstat.nix
     ./usbguard.nix
   ];
 }

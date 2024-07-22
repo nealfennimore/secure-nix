@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  services.systat = {
+  services.sysstat = {
     enable = lib.mkDefault true;
   };
 }
