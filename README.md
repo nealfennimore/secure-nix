@@ -11,14 +11,14 @@ This is an opinionated secure base config for your nixos system.
 - Enabled [AppArmor](./modules/security/apparmor.nix)
 - Enabled [Auditing](./modules/security/audit.nix)
 - Enabled [Fail2Ban](./modules/services/fail2ban.nix) (when SSH enabled)
-- Enabled [Logrotate](./modules/services/logrotate.nix) (:warning: not configured)
+- Enabled [Logrotate](./modules/services/logrotate.nix) (⚠️ not configured)
 - Enabled [PAM Passwd Requirements](./modules/security/pam/services/passwd.nix)
 - Enabled [Sysstat](./modules/services/sysstat.nix)
 - Enabled [USBGuard](./modules/services/usbguard.nix)
 - Encrypted [DNS over TLS](./modules/networking/dns.nix) via Cloudflare
 - Encrypted [Network Time Security (NTS)](./modules/networking/nts.nix) via Cloudflare and System76
-- Installed [Chkrootkit](./modules/environment/default.nix) (:warning: not on PATH)
-- Installed [AIDE](./modules/environment/default.nix) (:warning: not configured or on PATH)
+- Installed [Chkrootkit](./modules/environment/default.nix) (⚠️ not on PATH)
+- Installed [AIDE](./modules/environment/default.nix) (⚠️ not configured or on PATH)
 - Installed [acct](./modules/environment/default.nix)
 
 ## Hardening Score
