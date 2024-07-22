@@ -21,6 +21,10 @@ This is an opinionated secure base config for your nixos system.
 - Installed [AIDE](./modules/environment/default.nix) (:warning: not configured or on PATH)
 - Installed [acct](./modules/environment/default.nix)
 
+## Hardening Score
+
+With Lynis and this [base config](./test/flake.nix), the machine has a hardening score of 79/100.
+
 ## System Requirements
 
 Suggested 3GB of memory when using ClamAV, otherwise disable like so:
