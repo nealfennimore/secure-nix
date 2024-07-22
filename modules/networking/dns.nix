@@ -16,7 +16,7 @@
     enable = lib.mkDefault true;
     dnssec = lib.mkDefault "allow-downgrade";
     llmnr = lib.mkDefault "false";
-    dnsovertls = lib.mkDefault "true";
+    dnsovertls = lib.mkDefault "opportunistic";
     fallbackDns = lib.mkDefault [
       "1.0.0.1#cloudflare-dns.com"
       "2606:4700:4700::1001#cloudflare-dns.com"
@@ -24,7 +24,6 @@
     # DNSStubListenerExtra=[::1]:53 allows `dig -6` to work
     extraConfig = lib.mkDefault ''
       Cache=yes
-      DNSOverTLS=opportunistic
       DNSStubListenerExtra=[::1]:53
     '';
   };
