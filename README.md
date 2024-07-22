@@ -13,6 +13,8 @@ This is an opinionated secure base config for your nixos system.
 - Enabled [USBGuard](./modules/services/usbguard.nix)
 - Encrypted [DNS over TLS](./modules/networking/dns.nix) via Cloudflare
 - Encrypted [Network Time Security (NTS)](./modules/networking/nts.nix) via Cloudflare and System76
+- Hardened [OpenSSH](./modules/services/openssh.nix)
+- Enabled [Fail2Ban](./modules/services/fail2ban.nix) (when SSH enabled)
 
 ## System Requirements
 
@@ -24,7 +26,6 @@ Suggested 3GB of memory when using ClamAV, otherwise disable like so:
     updater.enable = false;
   };
 ```
-
 
 ## Usage
 
