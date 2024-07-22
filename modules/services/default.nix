@@ -1,9 +1,10 @@
 { ... }: {
   imports = [
     ./clamav.nix
-    ./logrotate.nix
-    ./usbguard.nix
-    ./openssh.nix
     ./fail2ban.nix
+    ./logrotate.nix
+    ./openssh.nix
+    ./systat.nix
+    ./usbguard.nix
   ];
 }
