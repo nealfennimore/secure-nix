@@ -3,6 +3,10 @@
 
   services.openssh.enable = true;
 
-  environment.systemPackages = (with pkgs;
+  environment.systemPackages = lib.mkAfter (with pkgs;
     [ lynis ]);
+
+  environment.sessionVariables = {
+    PATH = "${pkgs.chkrootkit.out}/bin:${pkgs.aide.out}/bin";
+  };
 }
