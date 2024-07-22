@@ -9,4 +9,11 @@
   environment.sessionVariables = {
     PATH = "${pkgs.chkrootkit.out}/bin:${pkgs.aide.out}/bin";
   };
+
+  boot.blacklistedKernelModules = [
+    "dccp"
+    "sctp"
+    "rds"
+    "tipc"
+  ];
 }

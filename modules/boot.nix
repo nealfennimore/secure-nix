@@ -4,10 +4,4 @@
   boot.kernelModules = lib.mkDefault [ ];
   boot.initrd.includeDefaultModules = lib.mkDefault false;
   boot.initrd.kernelModules = lib.mkDefault [ ];
-  boot.blacklistedKernelModules = lib.mkDefault [
-    "dccp"
-    "sctp"
-    "rds"
-    "tipc"
-  ];
 }
